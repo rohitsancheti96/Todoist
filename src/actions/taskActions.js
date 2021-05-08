@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-const { ADD_TASK } = require("../constants/taskConstants");
+const { ADD_TASK, UPDATE_TASK } = require("../constants/taskConstants");
 
 const addTask = (task) => (dispatch, getState) => {
     dispatch({
@@ -18,4 +18,15 @@ const addTask = (task) => (dispatch, getState) => {
     localStorage.setItem("taskList", JSON.stringify(taskList));
 };
 
-export { addTask };
+const updateTask = (id, status) => (dispatch, getState) => {
+    dispatch({
+        type: UPDATE_TASK,
+        payload: { id, status },
+    });
+    const {
+        tasks: { taskList },
+    } = getState();
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+};
+
+export { addTask, updateTask };

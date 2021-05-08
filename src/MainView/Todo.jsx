@@ -1,12 +1,19 @@
 import React from "react";
 import CardBox from "../component/CardBox";
 import { makeStyles } from "@material-ui/core";
+import { updateTask } from "../actions/taskActions";
+import { useDispatch } from "react-redux";
+import { handleDragOver, handleDragLeave, handleDragEnter } from "../dragdrop";
 
 const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: "#F7F7F8",
         width: "100%",
-        margin: "10px",
+        margin: "0px 10px",
+        minHeight: "350px",
+        height: "100%",
+        border: "1px solid lightgrey",
+        borderRadius: "10px",
     },
     head: {
         display: "flex",
@@ -23,16 +30,31 @@ const useStyles = makeStyles(() => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "500px",
+        height: "calc(100% - 40px)",
         overflow: "scroll",
     },
 }));
 
 function Todo({ list }) {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const handleDrop = (e, status) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = e.dataTransfer.getData("id");
+        dispatch(updateTask(id, status));
+    };
+
     return (
-        <div className={classes.root}>
-            <h3 className={classes.head}>To-do</h3>
+        <div
+            onDrop={(e) => handleDrop(e, "todo")}
+            onDragOver={(e) => handleDragOver(e)}
+            onDragEnter={(e) => handleDragEnter(e)}
+            onDragLeave={(e) => handleDragLeave(e)}
+            className={classes.root}
+        >
+            <p className={classes.head}>To-do</p>
             <div className={classes.cards}>
                 {list.length > 0 &&
                     list.map((item) => {

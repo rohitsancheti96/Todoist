@@ -11,6 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { addTask } from "../actions/taskActions";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -20,11 +21,28 @@ const useStyles = makeStyles(() => ({
         display: "flex",
         fontSize: "20px",
         borderBottom: "1px solid green",
+        height: "80px",
+        alignItems: "center",
     },
     form: {
         display: "flex",
         flexDirection: "column",
         width: "400px",
+        marginTop: "40px",
+        marginLeft: "64px",
+    },
+    icon: {
+        margin: "4px 10px 0px 30px",
+        color: "#000",
+    },
+    input: {
+        height: "20px",
+        backgroundColor: "#F2F2F2",
+        borderColor: "transparent",
+        borderRadius: "5px",
+    },
+    label: {
+        color: "grey",
     },
 }));
 
@@ -36,13 +54,13 @@ function CreateTask() {
     return (
         <div className={classes.root}>
             <div className={classes.head}>
-                <Button component={Link} to="/">
-                    Back
-                </Button>
+                <Link to="/" className={classes.icon}>
+                    <ArrowBackIcon />
+                </Link>
+
                 <p>Create Task</p>
             </div>
             <Formik
-                className={classes.form}
                 initialValues={{ taskName: "", description: "", status: "" }}
                 noValidate
                 autoComplete="off"
@@ -53,10 +71,23 @@ function CreateTask() {
                     history.push("/");
                 }}
             >
-                {({ isSubmitting, handleSubmit }) => (
-                    <Form onSubmit={handleSubmit}>
-                        <input type="text" name="taskName" />
-                        <input type="text" name="description" />
+                {({ isSubmitting, handleSubmit, handleChange }) => (
+                    <Form onSubmit={handleSubmit} className={classes.form}>
+                        <p className={classes.label}>Enter Task Name</p>
+                        <input
+                            text="text"
+                            name="taskName"
+                            onChange={handleChange}
+                            className={classes.input}
+                        />
+                        <p className={classes.label}>Enter Description</p>
+                        <textarea
+                            text="text"
+                            name="description"
+                            onChange={handleChange}
+                            className={classes.input}
+                            style={{ height: "100px" }}
+                        />
                         <div role="group">
                             <label>
                                 <Field

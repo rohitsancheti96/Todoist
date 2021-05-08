@@ -14,7 +14,8 @@ const useStyles = makeStyles(() => ({
         width: "100%",
         height: "calc(100% - 100px)",
     },
-    main: {},
+    main: { height: "100%", paddingRight: "20px" },
+    gridItem: { height: "100%" },
 }));
 
 function MainView() {
@@ -45,19 +46,19 @@ function MainView() {
         setTodo(temp_todo);
         setInprogress(temp_inprogress);
         setDone(temp_done);
-    }, []);
+    }, [taskList]);
 
     return (
         <div className={classes.root}>
             <NewTask />
             <Grid container className={classes.main} spacing={1}>
-                <Grid item md={4} sm={12}>
+                <Grid item md={4} sm={12} className={classes.gridItem}>
                     <Todo list={todo} />
                 </Grid>
-                <Grid item md={4} sm={12}>
+                <Grid item md={4} sm={12} className={classes.gridItem}>
                     <Inprogress list={inprogress} />
                 </Grid>
-                <Grid item md={4} sm={12}>
+                <Grid item md={4} sm={12} className={classes.gridItem}>
                     <Done list={done} />
                 </Grid>
             </Grid>
