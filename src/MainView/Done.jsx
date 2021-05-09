@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#F7F7F8",
         width: "100%",
         margin: "0px 10px",
-        minHeight: "350px",
+
         height: "100%",
         border: "1px solid lightgrey",
         borderRadius: "10px",
@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
         alignItems: "center",
         height: "calc(100% - 40px)",
         overflow: "scroll",
+        minHeight: "300px",
     },
 }));
 

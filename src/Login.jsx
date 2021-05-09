@@ -1,12 +1,16 @@
-import React from "react";
-import { Grid, makeStyles, Button, TextField } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { Grid, makeStyles, Button, TextField, Box } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "./actions/loginActions";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./actions/userActions";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import LockIcon from "@material-ui/icons/Lock";
 
 const useStyles = makeStyles((theme) => ({
-    root: { height: "100%" },
+    root: {
+        height: "100%",
+    },
     banner: {
         display: "flex",
         justifyContent: "center",
@@ -27,21 +31,55 @@ const useStyles = makeStyles((theme) => ({
     form: {
         display: "flex",
         flexDirection: "column",
+        width: "100%",
+    },
+    input: {
+        height: "30px",
+        width: "100%",
+        backgroundColor: "#F2F2F2",
+        borderColor: "transparent",
+    },
+    button: {
+        backgroundColor: "#34AE60",
+        color: "#fff",
+        margin: "50px 10% 0px",
+        "&:hover": {
+            background: "#34AE60",
+        },
+        fontWeight: "300",
+    },
+    inputContainer: {
+        backgroundColor: "#F2F2F2",
+        display: "flex",
+        alignItems: "center",
+        margin: "10px 10%",
+        borderRadius: "5px",
     },
 }));
 
 function Login() {
     const classes = useStyles();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push("/");
+        }
+    }, [userInfo]);
+
     return (
         <div className={classes.root}>
             <Grid container style={{ height: "100%" }}>
                 <Grid item md={6} xs={12} className={classes.banner}>
-                    <h1>switchon Assignments</h1>
+                    <h1>Switchon Assignments</h1>
                 </Grid>
                 <Grid item md={6} xs={12} className={classes.main}>
-                    <h1>TO-DO App</h1>
+                    <Box fontSize="50px" mb="100px">
+                        TO - DO App
+                    </Box>
                     <Formik
                         initialValues={{ email: "", password: "" }}
                         noValidate
@@ -50,7 +88,6 @@ function Login() {
                             console.log(values);
                             dispatch(login(values.email, values.password));
                             setSubmitting(false);
-                            history.push("/");
                         }}
                     >
                         {({ isSubmitting, handleSubmit, handleChange }) => (
@@ -58,17 +95,36 @@ function Login() {
                                 className={classes.form}
                                 onSubmit={handleSubmit}
                             >
-                                <TextField
-                                    type="email"
-                                    name="email"
-                                    onChange={handleChange}
-                                />
-                                <TextField
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                />
-                                <Button type="submit" disabled={isSubmitting}>
+                                <div className={classes.inputContainer}>
+                                    <Box p="10px 10px 5px 10px">
+                                        <MailOutlineIcon />
+                                    </Box>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        onChange={handleChange}
+                                        className={classes.input}
+                                        placeholder="Email"
+                                    />
+                                </div>
+
+                                <div className={classes.inputContainer}>
+                                    <Box p="10px 10px 5px 10px">
+                                        <LockIcon />
+                                    </Box>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        onChange={handleChange}
+                                        className={classes.input}
+                                        placeholder="Password"
+                                    />
+                                </div>
+                                <Button
+                                    type="submit"
+                                    className={classes.button}
+                                    disabled={isSubmitting}
+                                >
                                     Login
                                 </Button>
                             </Form>

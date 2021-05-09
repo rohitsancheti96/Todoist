@@ -1,6 +1,6 @@
 import { taskReducer } from "./reducer/taskReducers";
 import thunk from "redux-thunk";
-import { userLoginReducer } from "./reducer/loginReducer";
+import { userLoginReducer, userDetailsReducer } from "./reducer/userReducer";
 const {
     createStore,
     combineReducers,
@@ -20,6 +20,7 @@ const initialState = {
 const reducer = combineReducers({
     tasks: taskReducer,
     userLogin: userLoginReducer,
+    userDetails: userDetailsReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

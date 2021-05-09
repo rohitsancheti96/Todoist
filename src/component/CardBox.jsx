@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     card: {
@@ -30,7 +30,9 @@ function CardBox({ item }) {
                     onDragStart={(e) => handleDragStart(e, item.id)}
                 >
                     <p>{item.taskName}</p>
-                    <p>{item.description}</p>
+                    <Box pt="10px" fontSize="14px" fontWeight="200">
+                        {item.description}
+                    </Box>
                 </div>
             )}
         </>
