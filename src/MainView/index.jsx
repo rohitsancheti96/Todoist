@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Inprogress from "./Inprogress";
 import Done from "./Done";
 import Todo from "./Todo";
 import { makeStyles, Grid, Hidden, Box, Avatar } from "@material-ui/core";
 import NewTask from "./NewTask";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { addTask } from "../actions/taskActions";
-import { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";

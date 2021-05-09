@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Hidden, makeStyles, Button, Avatar, Box } from "@material-ui/core";
-import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import { logout } from "./actions/userActions";
 

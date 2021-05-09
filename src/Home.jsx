@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import MainView from "./MainView";
 import { makeStyles } from "@material-ui/core";
 import { Switch, Route, useHistory } from "react-router-dom";
 import CreateTask from "./MainView/CreateTask";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import Analytics from "./MainView/Analytics";
 import { detailsUser } from "./actions/userActions";
 
