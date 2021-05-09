@@ -85,7 +85,6 @@ function Login() {
                         noValidate
                         autoComplete="off"
                         onSubmit={(values, { setSubmitting }) => {
-                            console.log(values);
                             dispatch(login(values.email, values.password));
                             setSubmitting(false);
                         }}

@@ -65,10 +65,6 @@ function Analytics() {
         }
     }, [tasks]);
 
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
-
     const pieOptions = {
         legend: {
             display: true,

@@ -17,7 +17,6 @@ function CardBox({ item }) {
     const classes = useStyles();
 
     const handleDragStart = (e, id) => {
-        console.log("drag start");
         e.dataTransfer.setData("id", id);
     };
 

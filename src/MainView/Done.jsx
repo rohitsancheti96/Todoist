@@ -44,7 +44,6 @@ function Done({ list }) {
     const handleDrop = (e, status) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("drop");
         const id = e.dataTransfer.getData("id");
         dispatch(updateTask(id, status));
     };

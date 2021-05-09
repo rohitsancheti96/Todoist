@@ -45,7 +45,6 @@ function MainView() {
     const [todo, setTodo] = useState([]);
     const [inprogress, setInprogress] = useState([]);
     const [done, setDone] = useState([]);
-    console.log(tasks);
     const { taskList } = tasks;
 
     useEffect(() => {

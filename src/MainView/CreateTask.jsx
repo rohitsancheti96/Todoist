@@ -81,9 +81,7 @@ function CreateTask() {
                     }}
                     noValidate
                     autoComplete="off"
-                    onSubmit={(values, { setSubmitting }) => {
-                        console.log(values);
-                        //submit
+                    onSubmit={(values) => {
                         dispatch(addTask(values));
                         history.push("/");
                     }}
